@@ -57,10 +57,5 @@ namespace TheBank
 
             return null;
         }
-        public void storeInFile(){
-            string dataPath = @"BankLogs.csv";
-           
-
-        }
     }
 }

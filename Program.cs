@@ -37,14 +37,15 @@ namespace TheBank
 
 
             string dataPath = @"BankLogs.csv";
-            
-            if(File.Exists(dataPath)){
+
+            if (File.Exists(dataPath))
+            {
                 Console.WriteLine("File found");
-                 using (StreamWriter myWriter = File.CreateText(dataPath))
-                 {
+                using (StreamWriter myWriter = File.CreateText(dataPath))
+                {
                     
-                     myWriter.WriteLine(checkingAcct1.getHistory());
-                 }
+                    myWriter.WriteLine(checkingAcct1.getHistory());
+                }
             }
         }
     }

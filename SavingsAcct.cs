@@ -4,7 +4,7 @@ namespace TheBank
 {
     public class SavingsAcct : Account
     {
-        public double interestRate = .012f;
+        protected double interestRate = .012f;
 
         public SavingsAcct (string acctName, double initialBalance, int id) : base(acctName, initialBalance, id)
         {

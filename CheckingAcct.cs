@@ -7,9 +7,9 @@ namespace TheBank
 {
     public class CheckingAcct : Account
     {
-        public int infractionCounter;
+        protected int infractionCounter;
 
-        public List<string> history;
+        protected List<string> history;
 
         public CheckingAcct(string acctName, double initialBalance, int id) : base(acctName, initialBalance, id)
         {
