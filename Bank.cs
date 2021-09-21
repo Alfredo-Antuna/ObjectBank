@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+
 
 namespace TheBank
 {
@@ -53,6 +56,11 @@ namespace TheBank
             }
 
             return null;
+        }
+        public void storeInFile(){
+            string dataPath = @"BankLogs.csv";
+           
+
         }
     }
 }
