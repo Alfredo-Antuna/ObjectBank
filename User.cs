@@ -20,7 +20,13 @@ namespace TheBank
         }
 
         public void addAccount(int initialBalance, bool isSavings){
-
+            if(isSavings)
+            {//create savings
+                Accounts.Add(new SavingsAcct(Name,initialBalance));
+            }else
+            {//create checking
+                Accounts.Add(new CheckingAcct(Name,initialBalance));
+            }
             
 
         }

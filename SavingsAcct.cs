@@ -8,7 +8,7 @@ namespace TheBank
 
     public class SavingsAcct : Account
      {
-             public float InterestRate;
+             public float InterestRate = .012f;
 
 
 
@@ -20,8 +20,15 @@ namespace TheBank
             }
 
 
-            public void Forecast(int years){
+            public float Forecast(float years){
                 
+                return (Balance * (float)(Math.Pow((1 +(InterestRate/12)),(12*years))));
+                
+
+
+            }
+            public SavingsAcct(string acctName ,int initialBalance):base(acctName,initialBalance){
+
             }
 
 
