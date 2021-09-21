@@ -16,7 +16,7 @@ namespace TheBank
             history = new List<string>();
             infractionCounter = 0;
 
-            string reciept = $"{acctName}, 03/04/2021, Initial Deposit, ${initialBalance}, Success, Balance: ${balance}";
+            string reciept = $"{acctName}, {DateTime.Today.ToString("d")}, Initial Deposit, ${initialBalance}, Success, Balance: ${balance}";
 
             history.Add(reciept);
             
@@ -35,7 +35,7 @@ namespace TheBank
             
             balance += amount;
 
-            string reciept = $"{ownerName}, 03/04/2021, Deposit, ${amount}, Success, Balance: ${balance}";
+            string reciept = $"{ownerName}, {DateTime.Today.ToString("d")}, Deposit, ${amount}, Success, Balance: ${balance}";
 
             history.Add(reciept);
         }   
@@ -58,7 +58,7 @@ namespace TheBank
             {
                 balance -= amount;
 
-                string reciept = $"{ownerName}, 03/04/2021, Withdraw, ${amount}, Success, Balance: ${balance}";
+                string reciept = $"{ownerName}, {DateTime.Today.ToString("d")}, Withdraw, ${amount}, Success, Balance: ${balance}";
 
                 history.Add(reciept);
 
@@ -66,13 +66,13 @@ namespace TheBank
             }
             else
             {
-                string reciept = $"{ownerName}, 03/04/2021, Withdraw, ${amount}, Failed, Balance: ${balance}";
+                string reciept = $"{ownerName}, {DateTime.Today.ToString("d")}, Withdraw, ${amount}, Failed, Balance: ${balance}";
 
                 history.Add(reciept);
 
                 balance -= 50;
 
-                string feeReciept = $"{ownerName}, 03/04/2021, Fee, ${50}, Success, Balance: ${balance}";
+                string feeReciept = $"{ownerName}, {DateTime.Today.ToString("d")}, Fee, ${50}, Success, Balance: ${balance}";
 
                 history.Add(feeReciept);
 
