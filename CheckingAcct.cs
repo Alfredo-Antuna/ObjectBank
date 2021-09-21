@@ -87,7 +87,16 @@ namespace TheBank
                 return false;
             }
         }
+        public string getHistory(){
 
+            string output = "";
+
+            foreach(string log in history)
+            {
+                output += log+"\n";
+            }
+            return output;
+        }
         public void showTransactionLogs()
         {
             Console.WriteLine("Your transactions:");

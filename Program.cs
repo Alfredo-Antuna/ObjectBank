@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 
 
 
@@ -31,8 +33,18 @@ namespace TheBank
             checkingAcct1.withdraw(10);
             checkingAcct1.withdraw(70);
             checkingAcct1.deposit(250);
-
             checkingAcct1.showTransactionLogs();
+            string dataPath = @"BankLogs.csv";
+            if(File.Exists(dataPath)){
+                Console.WriteLine("file FOund");
+                 using (StreamWriter myWriter = File.CreateText(dataPath))
+                 {
+                    
+                     myWriter.WriteLine(checkingAcct1.getHistory());
+                 }
+            }
+           
+
         }
     }
 }

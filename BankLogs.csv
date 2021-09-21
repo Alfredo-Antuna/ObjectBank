@@ -1,0 +1,7 @@
+Steve, 9/21/2021, Initial Deposit, $10, Success, Balance: $10
+Steve, 9/21/2021, Deposit, $50, Success, Balance: $60
+Steve, 9/21/2021, Withdraw, $10, Success, Balance: $50
+Steve, 9/21/2021, Withdraw, $70, Failed, Balance: $50
+Steve, 9/21/2021, Fee, $50, Success, Balance: $0
+Steve, 9/21/2021, Deposit, $250, Success, Balance: $250
+
