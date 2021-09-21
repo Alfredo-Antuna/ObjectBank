@@ -25,7 +25,7 @@ namespace TheBank
 
         //increase balance
         //add to hist
-        public void deposit(int amount)
+        public void deposit(double amount)
         {
             if (!accountStatus)
             {
@@ -46,7 +46,7 @@ namespace TheBank
         //increase infraction counter if statement
         //if infraction counter 3 if statement
         //update history
-        public bool withdraw(int amount)
+        public bool withdraw(double amount)
         {
             if (!accountStatus)
             {
