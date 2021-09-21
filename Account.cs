@@ -6,32 +6,32 @@ namespace TheBank
 {
     public abstract class Account
     {
-        public string OwnerName;
+        protected string ownerName;
 
-        public double Balance;
+        protected double balance;
 
-        public bool AccountStatus;
+        protected bool accountStatus;
 
-        public int AccountID;
+        public int accountId;
 
-        public virtual void Open()
+        public virtual void open()
         {
-            AccountStatus = true;
-            Console.WriteLine($"Opened account for {OwnerName}");
+            accountStatus = true;
+            Console.WriteLine($"Opened account for {ownerName}");
         }
         
-        public virtual void Close()
+        public virtual void close()
         {
-            AccountStatus = false;
-            Console.WriteLine($"Closed account for {OwnerName}");
+            accountStatus = false;
+            Console.WriteLine($"Closed account for {ownerName}");
         }
 
-        public Account(string name, double Balance, int ID)
+        public Account(string name, double initialBalance, int id)
         {
-            OwnerName = name;
-            this.Balance = Balance;
-            AccountID = ID;
-            Open();
+            ownerName = name;
+            balance = initialBalance;
+            accountId = id;
+            open();
         }
     }
 }

@@ -7,39 +7,37 @@ namespace TheBank
 {
     public class CheckingAcct : Account
     {
-        public int InfractionCounter;
+        public int infractionCounter;
 
-        public List<string> History;
+        public List<string> history;
 
-        public CheckingAcct(string acctName, double initialBalance, int ID) : base(acctName, initialBalance, ID)
+        public CheckingAcct(string acctName, double initialBalance, int id) : base(acctName, initialBalance, id)
         {
-            History = new List<string>();
-            InfractionCounter = 0;
+            history = new List<string>();
+            infractionCounter = 0;
 
-            string reciept = $"{acctName}, 03/04/2021, Initial Deposit, ${initialBalance}, Success, Balance: ${Balance}";
+            string reciept = $"{acctName}, 03/04/2021, Initial Deposit, ${initialBalance}, Success, Balance: ${balance}";
 
-            History.Add(reciept);
-            //Console.WriteLine(reciept);
+            history.Add(reciept);
             
             Console.WriteLine($"{acctName} opened a checking account");
         }
 
         //increase balance
         //add to hist
-        public void Deposit(int amount)
+        public void deposit(int amount)
         {
-            if (!AccountStatus)
+            if (!accountStatus)
             {
                 Console.WriteLine("Sorry, this account is closed.");
                 return;
             }
             
-            Balance += amount;
+            balance += amount;
 
-            string reciept = $"{OwnerName}, 03/04/2021, Deposit, ${amount}, Success, Balance: ${Balance}";
+            string reciept = $"{ownerName}, 03/04/2021, Deposit, ${amount}, Success, Balance: ${balance}";
 
-            History.Add(reciept);
-            //Console.WriteLine(reciept);
+            history.Add(reciept);
         }   
 
         //decrease balance
@@ -48,57 +46,53 @@ namespace TheBank
         //increase infraction counter if statement
         //if infraction counter 3 if statement
         //update history
-        public bool Withdraw(int amount)
+        public bool withdraw(int amount)
         {
-            if (!AccountStatus)
+            if (!accountStatus)
             {
                 Console.WriteLine("Sorry, this account is closed.");
                 return false;
             }
 
-            if (Balance >= amount)
+            if (balance >= amount)
             {
-                Balance -= amount;
+                balance -= amount;
 
-                string reciept = $"{OwnerName}, 03/04/2021, Withdraw, ${amount}, Success, Balance: ${Balance}";
+                string reciept = $"{ownerName}, 03/04/2021, Withdraw, ${amount}, Success, Balance: ${balance}";
 
-                History.Add(reciept);
-                //Console.WriteLine(reciept);
+                history.Add(reciept);
 
                 return true;
             }
             else
             {
-                string reciept = $"{OwnerName}, 03/04/2021, Withdraw, ${amount}, Failed, Balance: ${Balance}";
+                string reciept = $"{ownerName}, 03/04/2021, Withdraw, ${amount}, Failed, Balance: ${balance}";
 
-                History.Add(reciept);
-                //Console.WriteLine(reciept);
+                history.Add(reciept);
 
-                Balance -= 50;
+                balance -= 50;
 
-                string feeReciept = $"{OwnerName}, 03/04/2021, Fee, ${50}, Success, Balance: ${Balance}";
+                string feeReciept = $"{ownerName}, 03/04/2021, Fee, ${50}, Success, Balance: ${balance}";
 
-                History.Add(feeReciept);
-                //Console.WriteLine(feeReciept);
+                history.Add(feeReciept);
 
-                InfractionCounter++;
+                infractionCounter++;
 
-                if (InfractionCounter == 3)
+                if (infractionCounter == 3)
                 {
-                    History.Add("Maximum infractures acrrued. The account is now closed.");
-                    // Console.WriteLine("Maximum infractures acrrued. Closing account...");
-                    this.Close();
+                    history.Add("Maximum infractures acrrued. The account is now closed.");
+                    this.close();
                 }
 
                 return false;
             }
         }
 
-        public void ShowTransactionLogs()
+        public void showTransactionLogs()
         {
             Console.WriteLine("Your transactions:");
 
-            foreach(string log in History)
+            foreach(string log in history)
             {
                 Console.WriteLine(log);
             }

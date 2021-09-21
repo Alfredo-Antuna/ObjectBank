@@ -9,34 +9,30 @@ namespace TheBank
     {
         static void Main(string[] args)
         {   
-            //List<User> initList = new List<User>();
+            TheBank myBank = new TheBank();
 
-            TheBank MyBank = new TheBank();
-
-            MyBank.AddNewUser("Steve");
+            myBank.addNewUser("Steve");
             
-            //MyBank.UserList[0].addAccount(10000, true, MyBank.IndexNewID());
+            int newAccountId1 = myBank.makeAccountForUser("Steve", 10000, true);
+            Console.WriteLine($"New account ID: {newAccountId1}");
 
-            int newAccountID = MyBank.MakeAccountForUser("Steve", 10000, true);
-            Console.WriteLine($"New account ID: {newAccountID}");
+            int failedAccountId = myBank.makeAccountForUser("Beth", 10000, true);
 
-            int failedAccountID = MyBank.MakeAccountForUser("Beth", 10000, true);
+            User steve = myBank.getUserReference("Steve");
 
-            User steve = MyBank.GetUserReference("Steve");
-
-            double forecast = (steve.getAccountWithID(newAccountID) as SavingsAcct).Forecast(3);
+            double forecast = (steve.getAccountWithId(newAccountId1) as SavingsAcct).forecast(3);
             Console.WriteLine($"In 3 years, Steve's savings account will have: ${forecast}");
 
-            MyBank.UserList[0].addAccount(10, false, MyBank.IndexNewID());
-            CheckingAcct checkingAcct1 = MyBank.UserList[0].Accounts[1] as CheckingAcct;
-            checkingAcct1.Deposit(50);
-            checkingAcct1.Withdraw(10);
-            checkingAcct1.Withdraw(70);
-            checkingAcct1.Deposit(250);
-            // checkingAcct1.Withdraw(500);
-            // checkingAcct1.Withdraw(500);
+            int newAccountId2 = myBank.makeAccountForUser("Steve", 10, false);
+            Console.WriteLine($"New account ID: {newAccountId2}");
 
-            checkingAcct1.ShowTransactionLogs();
+            CheckingAcct checkingAcct1 = steve.getAccountWithId(newAccountId2) as CheckingAcct;
+            checkingAcct1.deposit(50);
+            checkingAcct1.withdraw(10);
+            checkingAcct1.withdraw(70);
+            checkingAcct1.deposit(250);
+
+            checkingAcct1.showTransactionLogs();
         }
     }
 }

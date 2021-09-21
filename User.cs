@@ -5,32 +5,32 @@ namespace TheBank
 {
     public class User
     {
-        public string Name;
-        public List<Account> Accounts;
+        public string name;
+        public List<Account> accounts;
 
-        public User(string myName){
-            
-            Name = myName;
-            Accounts = new List<Account>();
+        public User(string myName)
+        {
+            name = myName;
+            accounts = new List<Account>();
         }
 
-        public void addAccount(double initialBalance, bool isSavings, int ID)
+        public void addAccount(double initialBalance, bool isSavings, int id)
         {
-            if(isSavings)
+            if (isSavings)
             {
-                Accounts.Add(new SavingsAcct(Name, initialBalance, ID));
+                accounts.Add(new SavingsAcct(name, initialBalance, id));
             }
             else
             {
-                Accounts.Add(new CheckingAcct(Name, initialBalance, ID));
+                accounts.Add(new CheckingAcct(name, initialBalance, id));
             }
         }
 
-        public Account getAccountWithID(int ID)
+        public Account getAccountWithId(int id)
         {
-            foreach(Account acc in Accounts)
+            foreach(Account acc in accounts)
             {
-                if (ID == acc.AccountID)
+                if (id == acc.accountId)
                 {
                     return acc;
                 }

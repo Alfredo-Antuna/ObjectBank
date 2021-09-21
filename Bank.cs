@@ -5,11 +5,11 @@ namespace TheBank
 {
     public class TheBank{
 
-        public List<User> UserList;
+        private List<User> userList;
 
-        public int lastID = 0;
+        private int lastID = 0;
 
-        public int IndexNewID()
+        public int indexNewID()
         {
             lastID++;
             return lastID;
@@ -17,23 +17,23 @@ namespace TheBank
 
         public TheBank()
         {
-            UserList = new List<User>();
+            userList = new List<User>();
         }
 
-        public void AddNewUser(string userName)
+        public void addNewUser(string userName)
         {
-            UserList.Add(new User(userName));
+            userList.Add(new User(userName));
         }
 
-        public int MakeAccountForUser(string userName, double initialBalance, bool isSavings)
+        public int makeAccountForUser(string userName, double initialBalance, bool isSavings)
         {
-            foreach(User someUser in UserList)
+            foreach(User someUser in userList)
             {
-                if (someUser.Name == userName)
+                if (someUser.name == userName)
                 {
-                    int newID = this.IndexNewID();
-                    someUser.addAccount(initialBalance, isSavings, newID);
-                    return newID;
+                    int newId = this.indexNewID();
+                    someUser.addAccount(initialBalance, isSavings, newId);
+                    return newId;
                 }
             }
 
@@ -42,11 +42,11 @@ namespace TheBank
             return -1;
         }
 
-        public User GetUserReference(string userName)
+        public User getUserReference(string userName)
         {
-            foreach(User someUser in UserList)
+            foreach(User someUser in userList)
             {
-                if (someUser.Name == userName)
+                if (someUser.name == userName)
                 {
                     return someUser;
                 }
