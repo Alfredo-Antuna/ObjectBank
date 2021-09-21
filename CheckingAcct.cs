@@ -5,75 +5,103 @@ using System.Collections.Generic;
 
 namespace TheBank
 {
-
-
     public class CheckingAcct : Account
-     {
-             public int InfractionCounter;
+    {
+        public int InfractionCounter;
 
-             public List<string> History;
+        public List<string> History;
 
-            public override void Open(){
+        public CheckingAcct(string acctName, double initialBalance, int ID) : base(acctName, initialBalance, ID)
+        {
+            History = new List<string>();
+            InfractionCounter = 0;
 
+            string reciept = $"{acctName}, 03/04/2021, Initial Deposit, ${initialBalance}, Success, Balance: ${Balance}";
+
+            History.Add(reciept);
+            //Console.WriteLine(reciept);
+            
+            Console.WriteLine($"{acctName} opened a checking account");
+        }
+
+        //increase balance
+        //add to hist
+        public void Deposit(int amount)
+        {
+            if (!AccountStatus)
+            {
+                Console.WriteLine("Sorry, this account is closed.");
+                return;
             }
-            public override void Close(){
+            
+            Balance += amount;
 
+            string reciept = $"{OwnerName}, 03/04/2021, Deposit, ${amount}, Success, Balance: ${Balance}";
+
+            History.Add(reciept);
+            //Console.WriteLine(reciept);
+        }   
+
+        //decrease balance
+        //check if sufficient
+        //50 fee if statement
+        //increase infraction counter if statement
+        //if infraction counter 3 if statement
+        //update history
+        public bool Withdraw(int amount)
+        {
+            if (!AccountStatus)
+            {
+                Console.WriteLine("Sorry, this account is closed.");
+                return false;
             }
 
-             public CheckingAcct(string acctName ,int initialBalance):base(acctName,initialBalance){
-                 History = new List<string>();
-                 InfractionCounter = 0;
-                
+            if (Balance >= amount)
+            {
+                Balance -= amount;
 
+                string reciept = $"{OwnerName}, 03/04/2021, Withdraw, ${amount}, Success, Balance: ${Balance}";
+
+                History.Add(reciept);
+                //Console.WriteLine(reciept);
+
+                return true;
             }
+            else
+            {
+                string reciept = $"{OwnerName}, 03/04/2021, Withdraw, ${amount}, Failed, Balance: ${Balance}";
 
-            //increase balance
-            //add to hist
-            public void Deposit(int amount){
-                Balance += amount;
-                History.Add($"{OwnerName}, 03/04/2021, Deposit, ${amount}, Success, ${Balance}");
-                Console.WriteLine($"{OwnerName}, 03/04/2021, Deposit, ${amount}, Success, ${Balance}");
-            }   
+                History.Add(reciept);
+                //Console.WriteLine(reciept);
 
-                //decrease balance
-                //check if sufficient
-                //50 fee if statement
-                    //increase infraction counter if statement
-                    //if infraction counter 3 if statement
-                //update history
-            public bool Withdraw(int amount){
-                if(Balance >= amount)
+                Balance -= 50;
+
+                string feeReciept = $"{OwnerName}, 03/04/2021, Fee, ${50}, Success, Balance: ${Balance}";
+
+                History.Add(feeReciept);
+                //Console.WriteLine(feeReciept);
+
+                InfractionCounter++;
+
+                if (InfractionCounter == 3)
                 {
-                    Balance -= amount;
-                    History.Add($"{OwnerName}, 03/04/2021, Withdraw, ${amount}, Success, ${Balance}");
-                    Console.WriteLine($"{OwnerName}, 03/04/2021, Withdraw, ${amount}, Success, ${Balance}");
-                    return true;
-
-                }else
-                {  
-                    History.Add($"{OwnerName}, 03/04/2021, Withdraw, ${amount}, Failed, ${Balance}");
-                    Console.WriteLine($"{OwnerName}, 03/04/2021, Withdraw, ${amount}, Failed, ${Balance}");
-                    InfractionCounter++;
-                    if(InfractionCounter==3){this.Close();}
-                    
-
-                    return false;
+                    History.Add("Maximum infractures acrrued. The account is now closed.");
+                    // Console.WriteLine("Maximum infractures acrrued. Closing account...");
+                    this.Close();
                 }
-                
 
+                return false;
             }
+        }
 
+        public void ShowTransactionLogs()
+        {
+            Console.WriteLine("Your transactions:");
 
-            public void ShowTransactionLogs(){
-                //Console.WriteLine(Stuff)
+            foreach(string log in History)
+            {
+                Console.WriteLine(log);
             }
-
-
-
-
-
+        }
     }
-
-
-
 }

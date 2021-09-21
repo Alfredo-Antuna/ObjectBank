@@ -4,31 +4,34 @@ using System;
 
 namespace TheBank
 {
-    
+    public abstract class Account
+    {
+        public string OwnerName;
 
-
-    public abstract class Account{
-
-
-        public  string OwnerName;
-
-        public int Balance;
+        public double Balance;
 
         public bool AccountStatus;
 
         public int AccountID;
 
-
-        public virtual void Open(){ AccountStatus = true; }
-        //TODO maybe do these virtual
-        public virtual void Close(){AccountStatus = false;}
-
-        public Account(string name, int Balance){
-            OwnerName = name;
-            this.Balance = Balance;
-            Open();
-            
+        public virtual void Open()
+        {
+            AccountStatus = true;
+            Console.WriteLine($"Opened account for {OwnerName}");
+        }
+        
+        public virtual void Close()
+        {
+            AccountStatus = false;
+            Console.WriteLine($"Closed account for {OwnerName}");
         }
 
+        public Account(string name, double Balance, int ID)
+        {
+            OwnerName = name;
+            this.Balance = Balance;
+            AccountID = ID;
+            Open();
+        }
     }
 }
